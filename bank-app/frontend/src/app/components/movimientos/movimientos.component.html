@@ -1,0 +1,41 @@
+<h2>Movimientos</h2>
+<table class="table fade-in" [class.flash]="saved">
+  <thead><tr><th>ID</th><th>Fecha</th><th>Tipo</th><th>Valor</th><th>Saldo</th></tr></thead>
+  <tbody>
+    <tr *ngFor="let m of movimientos">
+      <td>{{m.id}}</td>
+      <td>{{m.fecha}}</td>
+      <td>{{m.tipoMovimiento}}</td>
+      <td>{{m.valor}}</td>
+      <td>{{m.saldo}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Crear Movimiento</h3>
+<form #f="ngForm" (ngSubmit)="create(f)">
+  <div>
+    <label>Cuenta: 
+      <select name="cuentaId" required [(ngModel)]="newMov.cuentaId">
+        <option [ngValue]="null">Seleccione cuenta</option>
+        <option *ngFor="let c of cuentas" [ngValue]="c.id">{{c.id}} - {{c.numeroCuenta}}</option>
+      </select>
+    </label>
+  </div>
+  <div>
+    <label>Tipo: 
+      <select name="tipoMovimiento" [(ngModel)]="newMov.tipoMovimiento">
+        <option value="CREDITO">Crédito</option>
+        <option value="DEBITO">Débito</option>
+      </select>
+    </label>
+  </div>
+  <div>
+    <label>Valor: <input type="number" name="valor" required [(ngModel)]="newMov.valor" /></label>
+  </div>
+  <button class="button" type="submit">Crear</button>
+</form>
+
+<div *ngIf="err" class="err">{{err}}</div>
+
+<button class="button" (click)="load()">Refrescar</button>

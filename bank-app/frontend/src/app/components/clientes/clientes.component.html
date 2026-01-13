@@ -1,0 +1,37 @@
+<h2>Clientes</h2>
+
+<div>
+  <label>Buscar: <input [(ngModel)]="filter" placeholder="nombre o clienteId" /></label>
+</div>
+
+<table class="table fade-in" [class.flash]="saved">
+  <thead>
+    <tr><th>ID</th><th>Nombre</th><th>ClienteId</th><th>Estado</th></tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of filtered()">
+      <td>{{c.id}}</td>
+      <td>{{c.nombre}}</td>
+      <td>{{c.clienteId}}</td>
+      <td>{{c.estado}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Crear Cliente</h3>
+<form #f="ngForm" (ngSubmit)="create(f)">
+  <div>
+    <label>Nombre: <input name="nombre" required [(ngModel)]="newCliente.nombre" /></label>
+    <span *ngIf="!newCliente.nombre">* requerido</span>
+  </div>
+  <div>
+    <label>ClienteId: <input name="clienteId" required [(ngModel)]="newCliente.clienteId" /></label>
+    <span *ngIf="!newCliente.clienteId">* requerido</span>
+  </div>
+  <div>
+    <label>Estado: <input type="checkbox" name="estado" [(ngModel)]="newCliente.estado" /></label>
+  </div>
+  <button class="button" type="submit" [disabled]="!f.form.valid">Crear</button>
+</form>
+
+<button class="button" (click)="load()">Refrescar</button>

@@ -1,0 +1,21 @@
+<h2>Reportes</h2>
+<div>
+  <label>ClienteId: <input #cid /></label>
+  <label>Inicio (ISO): <input #ini placeholder="2024-01-01T00:00:00" /></label>
+  <label>Fin (ISO): <input #fin placeholder="2024-12-31T23:59:59" /></label>
+  <button class="button" (click)="generar(cid.value, ini.value, fin.value)">Generar</button>
+  <button class="button" (click)="descargar()" [disabled]="!pdfBase64">Descargar PDF</button>
+</div>
+
+<div *ngIf="pdfBase64">
+  <p>PDF generado (Base64, listo para descargar)</p>
+</div>
+<h2>Reportes</h2>
+<div>
+  <label>ClienteId: <input #cid /></label>
+  <label>Inicio (ISO): <input #ini /></label>
+  <label>Fin (ISO): <input #fin /></label>
+  <button class="button" (click)="generar(cid.value, ini.value, fin.value)">Generar</button>
+  <button class="button" (click)="descargar()">Descargar PDF</button>
+</div>
+<div *ngIf="pdfBase64">PDF listo para descargar.</div>

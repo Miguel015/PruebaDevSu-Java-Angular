@@ -1,0 +1,42 @@
+<h2>Cuentas</h2>
+
+<div>
+  <label>Buscar: <input [(ngModel)]="filter" placeholder="numero cuenta" /></label>
+</div>
+
+<table class="table fade-in" [class.flash]="saved">
+  <thead><tr><th>ID</th><th>Numero</th><th>Tipo</th><th>Saldo</th></tr></thead>
+  <tbody>
+    <tr *ngFor="let c of filtered()">
+      <td>{{c.id}}</td>
+      <td>{{c.numeroCuenta}}</td>
+      <td>{{c.tipoCuenta}}</td>
+      <td>{{c.saldoInicial}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Crear Cuenta</h3>
+<form #f="ngForm" (ngSubmit)="create(f)">
+  <div>
+    <label>Numero Cuenta: <input name="numeroCuenta" required [(ngModel)]="newCuenta.numeroCuenta" /></label>
+  </div>
+  <div>
+    <label>Tipo: 
+      <select name="tipoCuenta" [(ngModel)]="newCuenta.tipoCuenta">
+        <option>Ahorro</option>
+        <option>Corriente</option>
+      </select>
+    </label>
+  </div>
+  <div>
+    <label>Saldo Inicial: <input type="number" name="saldoInicial" [(ngModel)]="newCuenta.saldoInicial" /></label>
+  </div>
+  <div>
+    <label>ClienteId (numérico id): <input name="clienteId" required [(ngModel)]="newCuenta.clienteId" /></label>
+  </div>
+  <button class="button" type="submit">Crear</button>
+</form>
+  <div *ngIf="err" class="err">{{err}}</div>
+
+<button class="button" (click)="load()">Refrescar</button>
