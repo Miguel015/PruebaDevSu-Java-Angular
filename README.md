@@ -113,9 +113,11 @@ Los estilos se encuentran en frontend/full-app/src/styles.css y dan una UI moder
 
 ---
 
-## 6. Pruebas unitarias backend
+## 6. Pruebas unitarias (backend y frontend)
 
-Las pruebas unitarias se encuentran en:
+### Backend
+
+Las pruebas unitarias de servicios se encuentran en:
 
 - backend/src/test/java/com/devsu/bankapp/service/ClienteServiceTest.java
 - backend/src/test/java/com/devsu/bankapp/service/MovimientoServiceTest.java
@@ -128,6 +130,21 @@ mvn test
 ```
 
 En el Dockerfile de backend se utiliza `mvn -DskipTests package` para acelerar el build de la imagen, pero las pruebas pueden ejecutarse de forma independiente durante el desarrollo.
+
+### Frontend (Angular)
+
+El proyecto Angular incluye pruebas unitarias generadas con Jasmine/Karma, por ejemplo:
+
+- frontend/full-app/src/app/app.component.spec.ts
+- frontend/full-app/src/app/components/cuentas/cuentas.component.spec.ts
+- frontend/full-app/src/app/components/movimientos/movimientos.component.spec.ts
+
+Para ejecutarlas:
+
+```bash
+cd frontend/full-app
+npm test   # o bien: npx ng test
+```
 
 ---
 
