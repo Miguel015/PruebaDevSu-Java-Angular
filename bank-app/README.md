@@ -131,7 +131,17 @@ En el Dockerfile de backend se utiliza `mvn -DskipTests package` para acelerar e
 
 ---
 
-## 7. Notas de diseño y decisiones
+## 7. Colección Postman
+
+En la carpeta `docs/` se incluye una colección de Postman lista para ser importada:
+
+- docs/PruebaDevSu.postman_collection.json
+
+Esta colección contiene requests para clientes, cuentas, movimientos y reportes. Usa la variable `baseUrl` (por defecto `http://localhost:8080/api`).
+
+---
+
+## 8. Notas de diseño y decisiones
 
 - `clienteId` se genera en el backend (formato `CLI` + timestamp) y se reutiliza como identificador mínimo único.
 - La entidad Cliente hereda de Persona para reutilizar campos comunes.
